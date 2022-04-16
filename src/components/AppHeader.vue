@@ -22,7 +22,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'AppHeader',
-  props: ['username']
+  props: { username: String }
 })
 </script>
 
