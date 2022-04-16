@@ -62,6 +62,7 @@
 import { defineComponent } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import TodosTasks from '@/components/TodosTasks.vue'
+import moment from 'moment'
 
 export default defineComponent({
   name: 'TodosView',
@@ -69,41 +70,50 @@ export default defineComponent({
     AppHeader,
     TodosTasks
   },
-  props: ['username'],
+  props: { username: String },
   data () {
     return {
       todos: [
         {
           title: 'First task',
           status: 'pending',
-          due: '15/07/2022'
+          due: '07/15/2022'
         },
         {
           title: 'Second task',
           status: 'completed',
-          due: '06/08/2022'
+          due: '08/06/2022'
         },
         {
           title: 'Third task',
           status: 'incomplete',
-          due: '21/06/2022'
+          due: '06/21/2022'
         },
         {
           title: '4th task',
           status: 'ready',
-          due: '18/05/2022'
+          due: '05/18/2022'
         },
         {
           title: '5th task',
           status: 'cancelled',
-          due: '27/05/2022'
+          due: '05/27/2022'
         },
         {
           title: 'Latest task',
           status: 'completed',
-          due: '11/05/2022'
+          due: '05/11/2022'
         }
       ]
+    }
+  },
+  mounted () {
+    const storedTodos = JSON.parse(localStorage.getItem('storedTodos') || '[]')
+    if (storedTodos?.length) {
+      storedTodos.map(todo => {
+        todo.due = moment(new Date(todo.due)).format('L')
+        return this.todos.push(todo)
+      })
     }
   },
   methods: {

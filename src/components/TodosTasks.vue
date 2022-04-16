@@ -24,8 +24,9 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'TodosTasks',
-  props: ['todos']
+  props: { todos: Array }
 })
+
 </script>
 
 <style lang="stylus">

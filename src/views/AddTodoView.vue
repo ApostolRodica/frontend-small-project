@@ -6,20 +6,19 @@
     <div class="container page-content">
       <div class='section-title'>
         <h6>/ Add a new Todo</h6>
-        <button type="submit" @click="saveTodo" class="btn btn-primary btn-sm">Save</button>
       </div>
       <form>
         <div class="row">
-          <div class="col-md-6 col-sm-12">
+          <div class="col-lg-6 col-md-12 col-sm-12">
             <label for="title">Title</label>
             <input v-model="todo.title" type="text" class="form-control" placeholder="My Todo" required>
           </div>
           <div class="w-100"></div>
-          <div class="col-md-3 col-sm-12">
+          <div class="col-lg-3 col-md-6 col-sm-12">
             <label for="date">Due on</label>
             <datepicker v-model="todo.due" />
           </div>
-          <div class="col-md-3 col-sm-12">
+          <div class="col-lg-3 col-md-6 col-sm-12">
             <label for="status">Status</label>
             <select v-model="todo.status" class="form-control">
               <option value="pending" selected>Pending</option>
@@ -27,6 +26,7 @@
             </select>
           </div>
         </div>
+        <button type="submit" @click="saveTodo" class="btn btn-primary btn-sm save">Save</button>
       </form>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default defineComponent({
     AppHeader,
     Datepicker
   },
-  props: ['username'],
+  props: { username: String },
   data () {
     return {
       todo: {
@@ -56,7 +56,13 @@ export default defineComponent({
   },
   methods: {
     saveTodo () {
-      this.$router.push({ name: 'todos', params: { username: this.username } })
+      if (this.todo.title) {
+        const localItems = localStorage.getItem('storedTodos')
+        const todos = localItems !== null ? JSON.parse(localItems) : []
+        todos.push(this.todo)
+        localStorage.setItem('storedTodos', JSON.stringify(todos))
+        this.$router.push({ name: 'todos', params: { username: this.username } })
+      }
     }
   }
 })
@@ -65,6 +71,7 @@ export default defineComponent({
 <style lang="stylus">
 .add-todo
   .page-content
+    position relative
     padding 1rem
     background-color #fafafa
     margin-top 1rem
@@ -74,12 +81,15 @@ export default defineComponent({
       justify-content space-between
       align-items center
       h6
-        margin-bottom 0
+        margin-bottom 1rem
         font-weight 600
-      button
-        min-width 6rem
-        text-align center
-        margin-bottom 0.5rem
+    button
+      min-width 6rem
+      text-align center
+      margin-bottom 0.5rem
+      position absolute
+      top 1rem
+      right 1rem
     form
       background-color #fff
       padding 1rem

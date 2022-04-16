@@ -10,9 +10,18 @@
 import { computed } from 'vue'
 
 export default {
-  setup () {
-    const year = computed(() => new Date().getFullYear())
-    return { year }
+  data () {
+    return {
+      year: String | Number
+    }
+  },
+  mounted () {
+    const currentYear = new Date().getFullYear()
+    if (currentYear === 2022) {
+      this.year = 2022
+    } else {
+      this.year = '2022-' + currentYear
+    }
   }
 }
 </script>
