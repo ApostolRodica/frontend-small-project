@@ -1,9 +1,9 @@
 <template>
   <header>
     <div class="container">
-      <a href="/"><img class="logo" src="../assets/logo-white.svg"/></a>
+      <a href="/"><img class="logo" src="../assets/logo-white.svg"></a>
       <div class="user">
-          <img src="../assets/avatar.png" />
+          <img src="../assets/avatar.png">
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
             Welcome {{ username }}

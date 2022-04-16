@@ -1,7 +1,7 @@
 <template>
   <div class="signup">
     <form>
-      <img class="logo" src="../assets/logo-default.svg" />
+      <a href="/"><img class="logo" src="../assets/logo-default.svg"></a>
       <div class="row">
         <div class="col-12 col-md-6">
           <input type="text" class="form-control" placeholder="Username" required>

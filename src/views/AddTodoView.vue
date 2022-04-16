@@ -21,7 +21,7 @@
           </div>
           <div class="col-md-3 col-sm-12">
             <label for="status">Status</label>
-            <select v-model="todo.status">
+            <select v-model="todo.status" class="form-control">
               <option value="pending" selected>Pending</option>
               <option value="ready">Ready</option>
             </select>
@@ -95,14 +95,8 @@ export default defineComponent({
           opacity 0.8
       select
         width 100%
-        min-height 2.4rem
         border-color #ddd
         border-radius 4px
         padding-left 0.5rem
         padding-right 0.5rem
-@media (max-width: 767.98px)
-  .add-todo
-    form
-      select
-        min-height 2rem
 </style>

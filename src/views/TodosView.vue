@@ -42,8 +42,8 @@
           </div>
           <div class="tab-pane fade" id="nav-incompleted" role="tabpanel" aria-labelledby="incompleted">
             <todos-tasks
-              v-if="getIncompletedTasks(todos)?.length"
-              :todos="getIncompletedTasks(todos)"
+              v-if="getIncompleteTasks(todos)?.length"
+              :todos="getIncompleteTasks(todos)"
             />
           </div>
           <div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="completed">
@@ -85,13 +85,18 @@ export default defineComponent({
         },
         {
           title: 'Third task',
-          status: 'incompleted',
+          status: 'incomplete',
           due: '21/06/2022'
         },
         {
           title: '4th task',
           status: 'ready',
           due: '18/05/2022'
+        },
+        {
+          title: '5th task',
+          status: 'cancelled',
+          due: '27/05/2022'
         },
         {
           title: 'Latest task',
@@ -105,8 +110,8 @@ export default defineComponent({
     goToCreateTask () {
       this.$router.push({ name: 'addTodos', params: { username: this.username } })
     },
-    getIncompletedTasks (tasks) {
-      return tasks.filter(t => t.status === 'incompleted')
+    getIncompleteTasks (tasks) {
+      return tasks.filter(t => t.status !== 'completed')
     },
     getCompletedTasks (tasks) {
       return tasks.filter(t => t.status === 'completed')
@@ -156,7 +161,7 @@ main-color = #7244d8
       display block
       .tab-pane
         padding 0.5rem
-@media (max-width: 767.98px)
+@media (max-width: 768px)
   .todos
     .page-content
       padding 1.5rem

@@ -1,22 +1,23 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import SigninView from '../views/SigninView.vue'
+import SignupView from '../views/SignupView.vue'
 import TodosView from '../views/TodosView.vue'
 import AddTodoView from '../views/AddTodoView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    alias: ['/', '/signin'],
+    redirect: '/signin'
+  },
+  {
+    path: '/signin',
     name: 'signin',
     component: SigninView
   },
   {
     path: '/signup',
     name: 'signup',
-    // route level code-splitting
-    // this generates a separate chunk (signup.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "signup" */ '../views/SignupView.vue')
+    component: SignupView
   },
   {
     path: '/todos',

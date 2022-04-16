@@ -1,6 +1,6 @@
 <template>
   <router-view/>
-  <app-footer />
+  <app-footer/>
 </template>
 
 <script>

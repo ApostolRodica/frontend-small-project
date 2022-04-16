@@ -1,7 +1,7 @@
 <template>
   <div class="signin">
     <form>
-      <img class="logo" src="../assets/logo-default.svg" />
+      <a href="/"><img class="logo" src="../assets/logo-default.svg"></a>
       <div class="mb-3">
         <input v-model="username" type="text" class="form-control" placeholder="Username" required>
       </div>

@@ -6,10 +6,11 @@
         <span
           class="badge"
           v-bind:class="{
-            'bg-success' : task.status == 'ready',
-            'bg-secondary' : task.status == 'completed',
+            'bg-success' : task.status == 'completed',
+            'bg-secondary' : task.status == 'incomplete',
+            'bg-primary' : task.status == 'ready',
             'bg-warning text-dark' : task.status == 'pending',
-            'bg-danger' : task.status == 'incompleted'
+            'bg-danger' : task.status == 'cancelled'
           }"
         >{{ task.status }}</span>
       </div>
@@ -43,7 +44,7 @@ export default defineComponent({
         margin-right 0.5rem
     .due-date
       margin-left 12rem
-@media (max-width: 767.98px)
+@media (max-width: 768px)
   .todos-tasks
     .task
       .due-date
